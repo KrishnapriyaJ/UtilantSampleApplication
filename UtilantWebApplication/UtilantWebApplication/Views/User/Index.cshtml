@@ -1,0 +1,111 @@
+﻿@model IEnumerable<UtilantWebApplication.ViewModels.UserViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+<h3>Details of @Model.FirstOrDefault().Name</h3>
+
+<table>
+    <tr>
+        <td><b>Name:</b></td>
+        <td width="5%"></td>
+        <td>@Model.FirstOrDefault().Name</td>
+    </tr>
+    <tr>
+        <td><b>User Name:</b></td>
+        <td></td>
+        <td>@Model.FirstOrDefault().UserName</td>
+    </tr>
+    <tr>
+        <td><b>Email:</b></td>
+        <td></td>
+        <td>@Model.FirstOrDefault().Email</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><b>Address:</b></td>
+        <td></td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        @Model.FirstOrDefault().address.Suite&nbsp;
+                        @Model.FirstOrDefault().address.Street,
+                        @Model.FirstOrDefault().address.City&nbsp;
+
+                        @Model.FirstOrDefault().address.Zipcode
+                    </td>
+                </tr>
+                <tr><td>Latitude: &nbsp; @Model.FirstOrDefault().address.Geo.Lat</td></tr>
+                <tr><td>Longitude: &nbsp; @Model.FirstOrDefault().address.Geo.Lng</td></tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><b>Phone:</b></td>
+        <td></td>
+        <td>@Model.FirstOrDefault().Phone</td>
+    </tr>
+    <tr>
+        <td><b>Website:</b></td>
+        <td></td>
+        <td>@Model.FirstOrDefault().Website</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><b>Company:</b></td>
+        <td></td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        @Model.FirstOrDefault().Company.Name
+                    </td>
+                </tr>
+                <tr><td>Catch Phrase: &nbsp; @Model.FirstOrDefault().Company.CatchPhrase</td></tr>
+                <tr><td>Bs: &nbsp; @Model.FirstOrDefault().Company.Bs</td></tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<h3>Post Details</h3>
+@foreach (var item in Model.FirstOrDefault().Post)
+{
+    <table>
+        <tr>
+            <td>@item.Title</td>
+        </tr>
+        <tr>
+            <td>@item.Body</td>
+        </tr>
+        <br />
+    </table>
+}

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<UtilantWebApplication.ViewModels.PhotoViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h4>Thumbnails</h4>
+
+
+@foreach (var item in Model)
+{
+    <table style="display:inline-block;vertical-align:top">
+        <tr>
+            <td width="150px"><img src="@Url.Content(item.ThumbNailUrl)" alt="IMAGES" /> </td>
+        </tr>
+        <tr><td height="25%"></td></tr>
+        <tr>
+            <td width="150px">@Html.DisplayFor(m => item.Title)</td>&nbsp;&nbsp;
+        </tr>
+    </table>
+}
+
+

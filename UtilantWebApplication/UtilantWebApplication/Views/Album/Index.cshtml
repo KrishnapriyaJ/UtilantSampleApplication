@@ -1,0 +1,52 @@
+﻿@using PagedList.Mvc
+@model  PagedList.IPagedList<UtilantWebApplication.ViewModels.AlbumViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("Index", "Album", FormMethod.Get))
+{
+    <br />
+    <p style="text-align:right">
+        Search by Title/Name: @Html.TextBox("searchData")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>Thumbnail</th>
+        <th>Title</th>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Address</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@Url.Content(item.ThumbNailUrl)" alt="IMAGES" />
+            </td>
+
+            <td>@Html.ActionLink(item.Title, "Index", "ThumbNail", new { albumId = item.Id }, null)</td>
+            <td>@Html.ActionLink(item.UserName, "Index", "User", new { id = item.UserId }, null)</td>
+            <td>@Html.DisplayFor(m => item.Email)</td>
+            <td>@Html.DisplayFor(m => item.Phone)</td>
+            <td>
+                @Html.DisplayFor(m => item.Address.Suite) &nbsp;@Html.DisplayFor(m => item.Address.Street),
+                @Html.DisplayFor(m => item.Address.City), &nbsp;@Html.DisplayFor(m => item.Address.Zipcode)
+            </td>
+        </tr>
+    }
+</table>
+
+<div id="container" style="margin-left: 20px">
+    <p></p>
+    <p></p>
+    <div class="pagination" style="margin-left: 400px">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>
+</div>
